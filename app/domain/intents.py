@@ -25,8 +25,8 @@ from enum import Enum
 from dataclasses import dataclass
 from typing import List, Optional
 
-from models import Timeframe
-from exceptions import MissingParameterException
+from .models import Timeframe
+from .exceptions import MissingParameterException
 
 
 # ======================
