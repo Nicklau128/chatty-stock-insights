@@ -15,11 +15,11 @@ The UI acts as a thin layer over the application services.
 """
 
 import streamlit as st
-from app.services.assistant import Assistant
+from services.assistant import StockInsightsAssistant
 
-assistant = Assistant()
+assistant = StockInsightsAssistant()
 
-st.title("Stock Insights Assistant")
+st.title("Chatty Stock Insights")
 
 query = st.text_input("Ask a question")
 
