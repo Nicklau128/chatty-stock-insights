@@ -16,17 +16,26 @@ An LLM-powered app to answer your questions about the stock market today
 
 This application is designed in hexagonal layering that isolates core business logic from external dependencies, which optimises for maintainability and testability by enabling components to be updated without impacting the core logic.
 
-[User] 
-   ↓
-[Streamlit UI] 
-   ↓
+[User]
+|
+v
+[Streamlit UI]
+|
+v
 [Assistant Service]
-   ↓
-[IntentService] --- [OpenAIClient (map Natural Language -> intent)]
-   ↓
-[FinanceService] --- [StockProvider yfinance API]
-   ↓
-[Domain Models] -> [Insight response]
+|
++-------------------
+| |
+v v
+[IntentService] [FinanceService]
+| |
++---> [OpenAI] +---> [StockProvider]
+|
+v
+[Domain Models / Insight]
+|
+v
+[Back to UI]
 
 ### Specific mappings of modules to their functions in the architecture
 
@@ -76,6 +85,7 @@ Trade-offs
 
 ## How AI helped build this app
 
-- Developing architecture and repository structure for given requirements: Gemini and ChatGPT each presented a design of the app, which resulted in a highly similar service partitioning strategy. ChatGPT's proposal was ultimately taken due to clear logic in setting the repo structure.
+- Developing architecture and repository structure for given requirements: Gemini and ChatGPT each presented a design of the app based on a summarised task definition, which resulted in a highly similar service partitioning strategy. ChatGPT's proposal was ultimately taken due to clear logic in setting the repo structure.
 - Coding out the first iteration: following up on its design, ChatGPT wrote the first python drafts for classes implementation, along with doc strings to summarise the purposes of scripts.
-- Debugging: GitHub Copilot was employed to debug with a holistic view of the repository, ensuring modules are imported correctly, namings are consistent across services, investigate breaking points, etc.
+- Debugging: This had been the largest productivity boost from AI. GitHub Copilot was employed to debug with a holistic view of the repository, ensuring modules are imported correctly, namings are consistent across services, investigate breaking points, etc.
+- Accepting vs rejecting AI changes: Copilot was always paused before allowed to make direct edits or refactors, the decisions to keep or undo were reviewed on code-block basis file by file, carefully controlling large deltas against the original code.
