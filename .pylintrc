@@ -1,0 +1,15 @@
+[MASTER]
+ignore=build,dist,__pycache__
+jobs=1
+load-plugins=
+
+[MESSAGES CONTROL]
+disable=C0114,C0115,C0116,missing-module-docstring,missing-class-docstring,missing-function-docstring
+
+[FORMAT]
+max-line-length=120
+
+[REPORTS]
+output-format=text
+reports=no
+score=yes
